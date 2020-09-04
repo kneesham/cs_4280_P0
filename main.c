@@ -5,52 +5,49 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "node.h"
 #include "tree.h"
-int handleCommandLineArgs(int argc);
+#include "util.h"
+
+
+int hasProperArgs(int argc);
+
 
 int main(int argc, char* argv[]) {
 
 	// TODO: Process command arguments, set up file to work regardless of source,
 	//  check if file readable, set the basename for the output file, etc.
-	int MAXCHAR = 1000;
-	char userIn[MAXCHAR];
-	FILE * filePtr;
+	char * fileText;
+	
+	if(hasProperArgs(argc)){
+		char * fileName = argv[argc - 1];
+		node_t * root = buildTree(fileName);
 
-	if(handleCommandLineArgs(argc)){
 
-		printf(strcat(argv[argc - 1] , ".fs"));
-		//filePtr = fopen(strcat(argv[argc - 1] + ".fs"), "r");
-		if(filePtr == NULL){
-			printf("ERROR: Your file name was incorrect, or does not exist.\n");
-		}
-		else {
-			while (fgets(fileText, MAXCHAR, filePtr) != NULL){
-				printf("%s", fileText);
-			}
-			fclose(filePtr);
-		}	
-		//fprintf(filePtr, "This is testing for fprintf...\n");
+	}
+	else {
+		//get input from keyboard.
+
 	}
 	// TODO: Build the tree
-
-
 
 
 	// Traverse the tree three different ways generating outputs
 	return 0;
 }
 
-int handleCommandLineArgs(int argc){
+int hasProperArgs(int argc){
 	int doesHaveArg = 0;
-	if(argc == 1){
-		printf("no command line arguments found\n");
+	if(argc == 1) {
+		// printf("no command line arguments found\n");
+		return 0;
 	} else if(argc == 2) {
-		printf("1 command line argument found\n");
+		// printf("1 command line argument found\n");
 		return 1;
 	}
 	else {
-		printf("There were more command line arguments found than expected.\n");
+		printf("ERROR: There were more command line arguments found than expected.\n");
 	}
 	return doesHaveArg;
 }
