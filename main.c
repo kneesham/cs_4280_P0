@@ -3,53 +3,37 @@
 // P0 < somefile // same as above except redirecting from somefile instead of keyboard, this tests keyboard input
 // P0 somefile   // read from somefile.fs
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include "node.h"
 #include "tree.h"
 #include "util.h"
+#include "argHandler.h"
+#include "fileManager.h"
+#include "arrayChecker.h"
 
-
-int hasProperArgs(int argc);
-
-
-int main(int argc, char* argv[]) {
+int main(int argc, char * argv[]) {
 
 	// TODO: Process command arguments, set up file to work regardless of source,
 	//  check if file readable, set the basename for the output file, etc.
-	char * fileText;
+
+	FILE * filePtr;
 	
 	if(hasProperArgs(argc)){
-		char * fileName = argv[argc - 1];
-		node_t * root = buildTree(fileName);
-
-
+		// read from cammand line argument filename
+		filePtr = openFileWithE(argv[argc - 1]);	
+		// printf("filename is : %s\n", filePtr);	
 	}
 	else {
-		//get input from keyboard.
-
+		// get input from keyboard.
+		filePtr = createTempFile();
 	}
-	// TODO: Build the tree
 
+	node_t * root = buildTree(filePtr);
 
 	// Traverse the tree three different ways generating outputs
+	destroyTempFile();
 	return 0;
 }
 
-int hasProperArgs(int argc){
-	int doesHaveArg = 0;
-	if(argc == 1) {
-		// printf("no command line arguments found\n");
-		return 0;
-	} else if(argc == 2) {
-		// printf("1 command line argument found\n");
-		return 1;
-	}
-	else {
-		printf("ERROR: There were more command line arguments found than expected.\n");
-	}
-	return doesHaveArg;
-}
+
 
 

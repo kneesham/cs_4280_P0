@@ -4,10 +4,7 @@
 #include <ctype.h> 
 
 
-char * getTextFromFile(char * fileName) {
-		FILE * filePtr;
-        fileName = strcat(fileName, ".fs");
-		filePtr = fopen(fileName, "r");
+char * getTextFromFile(FILE * filePtr) {
 		char * textToBuildTree = malloc(0 * sizeof(char));
 		
 		if(filePtr == NULL){
@@ -39,15 +36,15 @@ char * getTextFromFile(char * fileName) {
 			fclose(filePtr);
 		}
 
-		return textToBuildTree;	
+	return textToBuildTree;	
 
 }
 
-// int cFileExists(char * filename){
+// int cFileExists(char * file){
 //     // try to open file to read 
 //     FILE * file;
 
-//     if (file = fopen(filename, "r")){
+//     if (file = fopen(file, "r")){
 //         fclose(file);
 //         return 1;
 //     }

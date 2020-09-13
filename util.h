@@ -1,6 +1,6 @@
 #ifndef UTIL_H 
 #define UTIL_H  
 
-char * getTextFromFile(char * );
+char * getTextFromFile(FILE * );
 
 #endif
