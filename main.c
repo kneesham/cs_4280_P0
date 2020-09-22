@@ -29,6 +29,7 @@ int main(int argc, char * argv[]) {
 
 	node_t * root = buildTree(filePtr);
 
+
 	// Traverse the tree three different ways generating outputs
 	destroyTempFile();
 	return 0;

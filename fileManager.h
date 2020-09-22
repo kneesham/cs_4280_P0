@@ -4,5 +4,6 @@
 FILE * createTempFile();
 void destroyTempFile();
 FILE * openFileWithE(char *);
+char * getTextFromFile(FILE *);
 
 #endif
